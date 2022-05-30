@@ -7,28 +7,33 @@ import strcs_LA.VertexLA;
 public class GraphMA<E> implements Graph<E>  {
 
 	private VertexMA<E>[] vertex;
-	private int[][] adyacencyMatrix;
+	private int[][] adjacencyMatrix;
 	private int size = 0;
 	
+
 	@SuppressWarnings("unchecked")
 	public GraphMA(int vertexNum) {
-		
-		vertex = new VertexMA[vertexNum];
-		adyacencyMatrix = new int[vertexNum][vertexNum];
+		adjacencyMatrix = new int[vertexNum][vertexNum];
+		vertex = (VertexMA<E>[]) new Object[vertexNum];
 	}
-	
-	public void add(E e)
+
+
+	@Override
+	public void add(E e) 
 	{
-		VertexMA<E> newVertex = new VertexMA<E>(e);
-		vertex[size] = newVertex;
+		
+		VertexMA<E> toAdd = new VertexMA<>(e,size);
+		vertex[size] = toAdd;
 		size++;
 	}
 
+
 	@Override
-	public List<VertexLA<E>> search(VertexLA<E> v) {
-		// TODO Auto-generated method stub
+	public VertexLA<E> search(int index) {
+	
 		return null;
 	}
+
 
 	@Override
 	public void delete(VertexLA<E> v) {
@@ -36,9 +41,25 @@ public class GraphMA<E> implements Graph<E>  {
 		
 	}
 
+
+
+	public void addEdge(VertexMA<E> vi, VertexMA<E> vf, int cost) 
+	{
+		int indexI = vi.getIndex();
+		int indexF = vf.getIndex();
+		
+		
+	}
+
+
 	@Override
 	public void addEdge(VertexLA<E> vi, VertexLA<E> vf, int cost) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
+	
 }
+
+

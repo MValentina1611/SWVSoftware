@@ -4,9 +4,12 @@ public class VertexMA <E> {
 
 	private E element;
 
-	public VertexMA(E e)
+	private int index;
+	
+	public VertexMA(E e, int index)
 	{
 		this.element = e;
+		this.index = index;
 	}
 	
 	public E getElement() {
@@ -15,6 +18,10 @@ public class VertexMA <E> {
 
 	public void setElement(E element) {
 		this.element = element;
+	}
+
+	public int getIndex() {
+		return index;
 	}
 	
 	

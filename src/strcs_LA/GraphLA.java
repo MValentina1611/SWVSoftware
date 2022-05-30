@@ -15,12 +15,12 @@ public class GraphLA<E> implements Graph<E> {
 	}
 
 	
-	public void addEdge(int index, VertexLA<E> vf, int cost) {
+	public void addEdge(VertexLA<E> vi, VertexLA<E> vf, int cost) {
 		vf.setAdjacencyCost(cost);
 		
-		if(graph.containsKey(index))
+		if(graph.containsKey(vi.getIndex()))
 		{
-			graph.get(index).getAdyacencyList().add(vf);
+			graph.get(vi.getIndex()).getAdyacencyList().add(vf);
 		}
 	
 	}
