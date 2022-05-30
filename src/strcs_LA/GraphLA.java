@@ -1,42 +1,50 @@
 package strcs_LA;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class GraphLA<E> implements Graph<E> {
 	
-	private HashMap<VertexLA<E>, ArrayList<VertexLA<E>>> graph;
+	private HashMap<Integer,VertexLA<E>> graph;
 	private int size = 0;
 
 	@Override
 	public void add(E e) {
 	
-		VertexLA<E> newVertex = new VertexLA<>(e, size);
+		VertexLA<E> newVertex = new VertexLA<>(e,size);
 		size++;
-		graph.put(newVertex, newVertex.getAdyacencyList());
+		graph.put(size, newVertex);
 	}
 
-	@Override
-	public void addEdge(VertexLA<E> vi, VertexLA<E> vf, int cost) {
+	
+	public void addEdge(int index, VertexLA<E> vf, int cost) {
 		vf.setAdjacencyCost(cost);
-		graph.get(vi).add(vf);
+		
+		if(graph.containsKey(index))
+		{
+			graph.get(index).getAdyacencyList().add(vf);
+		}
+	
 	}
 	
 
 	@Override
 	public void delete(VertexLA<E> v) {
 		
-		//remove de la lista de adycencia;
-		graph.remove(v);
+		for(int i = 0; i < size; i++)
+		{
+			if(graph.get(i).getAdyacencyList().contains(v))
+			{
+				graph.get(i).getAdyacencyList().remove(v);
+			}
+		}
 		
+		graph.remove(v.getIndex());
+	
 	}
 	
 	
 	@Override
-	public List<VertexLA<E>> search(VertexLA<E> v) {
-		
-		return graph.get(v);
+	public VertexLA<E> search(int index) {
+		return graph.get(index);
 	}
 
 	
