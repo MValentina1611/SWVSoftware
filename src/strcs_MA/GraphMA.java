@@ -1,62 +1,74 @@
 package strcs_MA;
-import java.util.List;
+import java.util.ArrayList;
 
-import strcs_LA.Graph;
-import strcs_LA.VertexLA;
 
-public class GraphMA<E> implements Graph<E>  {
+public class GraphMA<E>  {
 
-	private VertexMA<E>[] vertex;
+	private ArrayList<VertexMA<E>> vertex;
 	private int[][] adjacencyMatrix;
 	private int size = 0;
 	
 
-	@SuppressWarnings("unchecked")
+
 	public GraphMA(int vertexNum) {
 		adjacencyMatrix = new int[vertexNum][vertexNum];
-		vertex = (VertexMA<E>[]) new Object[vertexNum];
+		vertex = new ArrayList<VertexMA<E>>();
 	}
 
-
-	@Override
 	public void add(E e) 
 	{
 		
 		VertexMA<E> toAdd = new VertexMA<>(e,size);
-		vertex[size] = toAdd;
-		size++;
+		vertex.add(toAdd);
 	}
-
-
-	@Override
-	public VertexLA<E> search(int index) {
-	
-		return null;
-	}
-
-
-	@Override
-	public void delete(VertexLA<E> v) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 
 	public void addEdge(VertexMA<E> vi, VertexMA<E> vf, int cost) 
 	{
 		int indexI = vi.getIndex();
 		int indexF = vf.getIndex();
+		boolean added = false;
+		for(int i = 0; i < adjacencyMatrix.length && !added; i++ )
+		{
+			for(int j = 0; j < adjacencyMatrix.length; j++)
+			{
+				if(i == indexF && j == indexI)
+				{
+					adjacencyMatrix[i][j] = cost;
+					added = true;
+				}
+			}
+		}
+	}
+	public VertexMA<E> search(int index) 
+	{
+		
+		VertexMA<E> founded = vertex.get(index); 
+		return founded;
+	}
+
+	public void delete(VertexMA<E> v) 
+	{
+		vertex.remove(v.getIndex());
+		size--;
+		boolean deleted = false;		
+		for(int i = 0; i < adjacencyMatrix.length && !deleted; i++ )
+		{
+			for(int j = 0; j < adjacencyMatrix.length; j++)
+			{
+				if(i == v.getIndex() || j == v.getIndex())
+				{
+					adjacencyMatrix[i][j] = 0;
+					deleted = true;
+				}
+			}
+		}
 		
 		
 	}
 
 
-	@Override
-	public void addEdge(VertexLA<E> vi, VertexLA<E> vf, int cost) {
-		// TODO Auto-generated method stub
-		
-	}
+
+	
 
 	
 	
