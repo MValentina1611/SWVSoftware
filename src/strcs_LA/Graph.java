@@ -8,5 +8,4 @@ public interface Graph<E> {
 	public void delete(VertexLA<E> v);
 	public void addEdge(VertexLA<E> vi, VertexLA<E> vf, int cost);
 	
-
 }

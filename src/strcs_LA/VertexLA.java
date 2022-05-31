@@ -9,6 +9,10 @@ public class VertexLA<E> {
 	private int index;
 	private ArrayList<VertexLA<E>> adyacencyList;
 	
+	//For BFS
+	private VertexLA<E> ancestor;
+	private boolean visited = false;
+	private int pDistance = 0;
 	
 	public VertexLA(E e, int index)
 	{
@@ -16,6 +20,9 @@ public class VertexLA<E> {
 		this.adjacencyCost = -1;
 		this.adyacencyList = new ArrayList<VertexLA<E>>();
 		this.index = index;
+		this.ancestor = null;
+		this.pDistance = 0;
+
 	}
 
 	public VertexLA(E e)
@@ -24,6 +31,8 @@ public class VertexLA<E> {
 		this.adjacencyCost = -1;
 		this.adyacencyList = new ArrayList<VertexLA<E>>();
 		this.index = -1;
+		this.ancestor = null;
+		this.pDistance = 0;
 	}
 	
 	public E getElement() {
@@ -43,6 +52,34 @@ public class VertexLA<E> {
 
 	public ArrayList<VertexLA<E>> getAdyacencyList() {
 		return adyacencyList;
+	}
+
+
+
+	public VertexLA<E> getAncestor() {
+		return ancestor;
+	}
+
+	public void setAncestor(VertexLA<E> ancestor) {
+		this.ancestor = ancestor;
+	}
+
+
+
+	public int getpDistance() {
+		return pDistance;
+	}
+
+	public void setpDistance(int pDistance) {
+		this.pDistance = pDistance;
+	}
+
+	public boolean isVisited() {
+		return visited;
+	}
+
+	public void setVisited(boolean visited) {
+		this.visited = visited;
 	}
 
 
