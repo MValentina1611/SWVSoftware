@@ -14,6 +14,9 @@ public class VertexLA<E> {
 	private boolean visited = false;
 	private int pDistance = 0;
 	
+	//For Dijkstra
+	private boolean visitedD = false;
+	
 	public VertexLA(E e, int index)
 	{
 		this.element = e;
@@ -82,8 +85,19 @@ public class VertexLA<E> {
 		this.visited = visited;
 	}
 
+	public boolean isVisitedD() {
+		return visitedD;
+	}
 
-	
+	public void setVisitedD(boolean visitedD) {
+		this.visitedD = visitedD;
+	}
+
+
+	public String toString()
+	{
+		return this.element.toString();
+	}
 	
 	
 	

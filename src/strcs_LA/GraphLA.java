@@ -118,5 +118,89 @@ public class GraphLA<E>  {
 	    return graphBFS;
 	}
 	
+	public ArrayList<VertexLA<E>> DijkstraShortestPath(VertexLA<E> origin, VertexLA<E> end) 
+	{
+		
+		ArrayList<VertexLA<E>> shortestPath = new ArrayList<VertexLA<E>>();
+	   
+	    HashMap<VertexLA<E>, VertexLA<E>> changedAt = new HashMap<>();
+	    changedAt.put(origin, null);
+	    
+	    HashMap<VertexLA<E>, Integer> shortestPathMap = new HashMap<>();
+
+	    for (VertexLA<E> node : graph.keySet()) {
+	        if (node == origin)
+	            shortestPathMap.put(origin, 0);
+	        else shortestPathMap.put(node, Integer.MAX_VALUE);
+	    }
+
+	    for (VertexLA<E> adjacent : origin.getAdyacencyList()) {
+	        shortestPathMap.put(adjacent, adjacent.getAdjacencyCost());
+	        changedAt.put(adjacent, origin);
+	    }
+
+	    origin.setVisitedD(true);
+
+	    while (true) {
+	    	VertexLA<E> currentNode = closestReachableUnvisited(shortestPathMap);
+
+	        if (currentNode == null) 
+	        {
+	            return null;
+	        }
+
+	        if (currentNode == end) 
+	        {
+	            
+	            VertexLA<E> child = end;
+
+	            shortestPath.add(end);
+	            while (true) {
+	            	VertexLA<E> parent = changedAt.get(child);
+	                if (parent == null) {
+	                    break;
+	                }
+	                shortestPath.add(parent);
+	                child = parent;
+	            }
+	            
+	           //"The path costs: " + shortestPathMap.get(end);
+	            return shortestPath;
+	        }
+	        currentNode.setVisitedD(true);
+	        
+	        for (VertexLA<E> adjacent : currentNode.getAdyacencyList()) {
+	            if (adjacent.isVisitedD())
+	                continue;
+
+	            if (shortestPathMap.get(currentNode) + adjacent.getAdjacencyCost() < shortestPathMap.get(adjacent)) {
+	                shortestPathMap.put(adjacent, shortestPathMap.get(currentNode) + adjacent.getAdjacencyCost());
+	                changedAt.put(adjacent, currentNode);
+	            }
+	        }
+	    }
+	}
 	
+	
+	private VertexLA<E> closestReachableUnvisited(HashMap<VertexLA<E>, Integer> shortestPathMap) {
+
+	    int shortestDistance = Integer.MAX_VALUE;
+	    VertexLA<E> closestReachableNode = null;
+	    for (VertexLA<E> node : graph.keySet()) 
+	    {
+	        if (node.isVisitedD())
+	            continue;
+
+	        int currentDistance = shortestPathMap.get(node);
+	        if (currentDistance == Integer.MAX_VALUE)
+	            continue;
+
+	        if (currentDistance < shortestDistance) 
+	        {
+	            shortestDistance = currentDistance;
+	            closestReachableNode = node;
+	        }
+	    }
+	    return closestReachableNode;
+	}
 }

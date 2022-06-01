@@ -23,22 +23,11 @@ public class GraphMA<E>  {
 	}
 
 	public void addEdge(VertexMA<E> vi, VertexMA<E> vf, int cost) 
-	{
-		int indexI = vi.getIndex();
-		int indexF = vf.getIndex();
-		boolean added = false;
-		for(int i = 0; i < adjacencyMatrix.length && !added; i++ )
-		{
-			for(int j = 0; j < adjacencyMatrix.length; j++)
-			{
-				if(i == indexF && j == indexI)
-				{
-					adjacencyMatrix[i][j] = cost;
-					added = true;
-				}
-			}
-		}
+	{	
+		adjacencyMatrix[vf.getIndex()][vi.getIndex()] = cost;
+		
 	}
+	
 	public VertexMA<E> search(int index) 
 	{
 		
