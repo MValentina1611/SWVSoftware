@@ -11,6 +11,7 @@ public class Child {
 	private String toy;
 
 	public Child(int age, String name, String lastname, String country, String city, String address, String toy) {
+		
 		this.age = age;
 		this.name = name;
 		this.lastname = lastname;
@@ -19,6 +20,7 @@ public class Child {
 		this.address = address;
 		this.toy = toy;
 	}
+	
 
 	public String getName() {
 		return name;
@@ -51,6 +53,11 @@ public class Child {
 		
 		info = "NAME: "+name+"\nLASTNAME:"+lastname+"\nAGE: "+age+"\nTOY: "+toy+"\nCOUNTRY: "+country+"\nCITY: "+city+"\nADDRESS: "+address+"\n";
 		return info;
+	}
+
+
+	public int getAge() {
+		return age;
 	}
 	
 }
