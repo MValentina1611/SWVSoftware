@@ -1,0 +1,10 @@
+Luis;Diaz;10;Mexico;DF;address;Teddy;
+Camila;Carvajal;5;Mexico;Xochimilco;address;Teddy;
+Valentina;Castro;11;Colombia;Valledupar;address;iPad;
+Santiago;Cárdenas;12;Colombia;Cali;address;Bici;
+Carolina;Ortiz;15;Argentina;Buenos Aires;address;Barbie;
+Sofia;Lopez;11;Argentina;Cordoba;address;Barbie;
+Carlos;Ortiz;15;Argentina;Argentinita;address;Laptop;
+David;Molta;9;Peru;Lima;address;Hotwheels;
+Juan;Espinosa;7;Colombia;Cali;address;Book;
+Gabriel;Torres;8;Peru;UnaCiudad;address;SunGlasses;
