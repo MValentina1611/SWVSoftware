@@ -1,13 +1,14 @@
 package strcs_LA;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class GraphLA<E>  {
 	
-	private HashMap<VertexLA<E>,ArrayList<VertexLA<E>>> graph;
+	private HashMap<VertexLA<E>,ArrayList<VertexLA<E>>> graph = new HashMap<>();
+	private HashMap<VertexLA<E>,Integer> graphIndex = new HashMap<>();
+	private int index = 0;
 
 
 	/*
@@ -34,46 +35,37 @@ public class GraphLA<E>  {
 	    graph.put(vi,tmp);
 	}
 
-	public void addEdge(VertexLA<E> vi, VertexLA<E> vf, int cost) 
-	{
-
+	public void addEdge(VertexLA<E> vi, VertexLA<E> vf, int cost) {
+		
 	    if (!graph.keySet().contains(vi))
 	    {
 	        graph.put(vi, null);
+	        
+	        index++;
+		    graphIndex.put(vi, index);
 	    }
 	    
 	    if (!graph.keySet().contains(vf))
 	    {
 	        graph.put(vf, null);
+	        
+	        index++;
+		    graphIndex.put(vf, index);
 	    }
 	    
 	    addEdgeHelper(vi, vf,cost);
-	}
-
-	
-	public void delete(VertexLA<E> v) 
-	{
-		
-		Collection<ArrayList<VertexLA<E>>> values = graph.values();
-		
-		for (ArrayList<VertexLA<E>> arrayList : values) {
-			
-			if(arrayList.contains(v))
-			{
-				arrayList.remove(v);
-			}
 		}
-		graph.remove(v);
 	
-	}
+
+	 public void removeVertex(VertexLA<E> vertex){
+         graph.remove(vertex);
+         graphIndex.remove(vertex);
+      }
 	
-	
-	public ArrayList<VertexLA<E>> search(VertexLA<E> v) 
-	{
+	public ArrayList<VertexLA<E>> search(VertexLA<E> v) {
 		return graph.get(v);
 	}
 
-	
 	public GraphLA<E> bfs(VertexLA<E> origin, Object characteristic) {
 
 		GraphLA<E> graphBFS = new GraphLA<E>();
@@ -202,5 +194,13 @@ public class GraphLA<E>  {
 	        }
 	    }
 	    return closestReachableNode;
+	}
+	
+	public HashMap<VertexLA<E>, ArrayList<VertexLA<E>>> getGraph() {
+		return graph;
+	}
+	
+	public HashMap<VertexLA<E>, Integer> getGraphIndex() {
+		return graphIndex;
 	}
 }

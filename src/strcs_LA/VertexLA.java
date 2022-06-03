@@ -67,8 +67,6 @@ public class VertexLA<E> {
 		this.ancestor = ancestor;
 	}
 
-
-
 	public int getpDistance() {
 		return pDistance;
 	}
@@ -98,8 +96,5 @@ public class VertexLA<E> {
 	{
 		return this.element.toString();
 	}
-	
-	
-	
 	
 }

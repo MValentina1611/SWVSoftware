@@ -9,7 +9,17 @@ public class Child {
 	private String city;
 	private String address;
 	private String toy;
-	
+
+	public Child(int age, String name, String lastname, String country, String city, String address, String toy) {
+		this.age = age;
+		this.name = name;
+		this.lastname = lastname;
+		this.country = country;
+		this.city = city;
+		this.address = address;
+		this.toy = toy;
+	}
+
 	public String getName() {
 		return name;
 	}
