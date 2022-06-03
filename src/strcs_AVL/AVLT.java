@@ -56,7 +56,7 @@ public class AVLT<E> implements BST_General<E> {
 	@Override
 	public Node<E> search(Node<E> root, E toSearch) 
 	{
-		if(root.getElement()==null) {
+		if(root.getElement() == null) {
 			return root;
 		}else if(comparator.compare(toSearch, root.getElement())==0) {
 			return root;
