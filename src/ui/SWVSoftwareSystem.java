@@ -1,7 +1,7 @@
 package ui;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.Child;
@@ -10,16 +10,18 @@ import model.SantaList;
 
 public class SWVSoftwareSystem {
 	
-	private DeliveryRoute deliveryRoute;
+	private static DeliveryRoute deliveryRoute;
 	private static SantaList santaList;
 	private static Scanner reader;
-	
+	private static ArrayList<Child> delivered;
 	//Method main start.
 		public static void main( String args [] )
 		{
 			santaList = new SantaList();
 			int menuOp = 0;
+			delivered = new ArrayList<Child>();
 			reader = new Scanner(System.in);
+			
 			
 			System.out.println("The App is initializing...");
 			
@@ -82,7 +84,7 @@ public class SWVSoftwareSystem {
 					break;
 			
 				case 4:
-					System.out.println("Trace the route");
+					createRoute();
 					break;
 				default:
 					System.out.println("Error, invalid option");
@@ -93,9 +95,12 @@ public class SWVSoftwareSystem {
  
 		public static void showList()
 		{
+			System.out.println("ShowList");
+			
+			
 			for(int i = 0; i < santaList.getToShow().size();i++)
 			{
-				System.out.println(santaList.getToShow().get(i).toString()+"\n");
+				System.out.println(santaList.getToShow().get(i).toString2()+"\n");
 			}
 		}
 	
@@ -194,5 +199,40 @@ public class SWVSoftwareSystem {
 			Child toSearch = new Child(age, name, lastname, country, city, address, toy);
 			return santaList.getSantaListByNames().search(toSearch);
 		}
+		
+		
+		public static void createRoute()
+		{
+			String country = "";
+			String initial = "";
+			
+			System.out.println("Enter the coutry which Santa wants: \n");
+			country = reader.nextLine();
+			System.out.println("Enter the initial letter of the name of the children: \n");
+			initial = reader.nextLine();
+			deliveryRoute = new DeliveryRoute(initial, santaList.countryFilter(country));
+			
+			showTheNextChild();
+		}
 
+		public static void showTheNextChild()
+		{
+			Child [] toShow = (Child[]) deliveryRoute.getRoute().getGraph().keySet().toArray();
+			int count = 0;
+			String buffer = "";
+			while(count < toShow.length)
+			{
+				System.out.println("The next child of the list is:\n"+toShow[count].toString2());
+				System.out.println("Press enter for watch the next child: ");
+				delivered.add(toShow[count]);
+				buffer = reader.nextLine();
+				if(buffer.equals("\n"))
+				{
+					count++;
+				}
+			}
+				
+				
+			
+		}
 }

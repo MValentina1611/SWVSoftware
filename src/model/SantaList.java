@@ -2,6 +2,7 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import strcs_AVL.AVLT;
@@ -23,6 +24,7 @@ public class SantaList {
 		santaListByCountry = new AVLT<Child>(c );
 		santaListByNames = new AVLT<Child>(n );
 		toShow = new ArrayList<Child>();
+
 	}
 	
 	
@@ -30,6 +32,7 @@ public class SantaList {
 	{
 		santaListByCountry.add(toAdd);
 		santaListByNames.add(toAdd);
+		toShow.add(toAdd);
 	}
 	
 	
@@ -78,13 +81,15 @@ public class SantaList {
 	}
 	
 	
-	public void importData() throws java.io.IOException 
+	public void importData() throws IOException 
 	{
+		System.out.println("Import");
 		BufferedReader br = new BufferedReader(new FileReader(FILE_LIST) );
 		String line = br.readLine();
 			
 			while( line != null )
 			{
+				System.out.println("No null");
 				String [] info = line.split("\\;");
 				String name  = info[0];
 				String lastname  = info[1];
@@ -98,14 +103,15 @@ public class SantaList {
 					int age = Integer.parseInt(info[2]);		
 					Child childToAdd = new Child(age,name,lastname,country,city,address,toy);
 					addChild(childToAdd);
-					toShow.add(childToAdd);
+					
+					System.out.println(childToAdd.toString2());
 				}
 				catch(NumberFormatException ex){}
 									
 				line = br.readLine();
 			}	
-			br.close();
 			
+			br.close();
 		
 	}
 	
@@ -118,5 +124,11 @@ public class SantaList {
 	public AVLT<Child> getSantaListByNames()
 	{
 		return santaListByNames;
+	}
+	
+	
+	public AVLT<Child> getSantaListByCountry()
+	{
+		return santaListByCountry;
 	}
 }

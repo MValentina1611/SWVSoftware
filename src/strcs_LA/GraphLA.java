@@ -11,14 +11,7 @@ public class GraphLA<E>  {
 	private int index = 0;
 
 
-	/*
-	public void createVertex(E e) {
-		
-		VertexLA<E> newVertex = new VertexLA<>(e,size);
-		size++;
-	}
 
-	*/
 	public void addEdgeHelper(VertexLA<E> vi, VertexLA<E> vf, int cost) 
 	{
 	    ArrayList<VertexLA<E>> tmp = graph.get(vi);

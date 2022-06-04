@@ -47,7 +47,7 @@ public class Child {
 		this.address = address;
 	}
 	
-	public String  toString()
+	public String  toString2()
 	{
 		String info = "";
 		
@@ -55,7 +55,12 @@ public class Child {
 		return info;
 	}
 
-
+	public String  toString()
+	{
+		
+		return String.valueOf(this.name.charAt(0));
+	}
+	
 	public int getAge() {
 		return age;
 	}

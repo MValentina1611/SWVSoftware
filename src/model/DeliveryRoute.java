@@ -115,7 +115,9 @@ public class DeliveryRoute {
 		
 	}
 	
-	
-	
+	public GraphLA<Child> getRoute()
+	{
+		return route;
+	}
 	
 }
