@@ -49,23 +49,27 @@ public class SantaList {
 		}
 	}
 
+	//LOOP ARREGLAR
 	private ArrayList<Node<Child>> countryFilter(Node<Child> current, String country) 
 	{
-		
+		boolean added = false;
 		ArrayList<Node<Child>> filtered = new ArrayList<Node<Child>>();
 		
-		while( current != null )
+		while( current != null && !added)
 		{
 			if(current.getElement().getCountry().equals(country))
 			{
+				System.out.println("added");
 				filtered.add(current);
 			}
 			else if( country.compareTo(current.getElement().getCountry()) > 0)
 			{
+				System.out.println("current.getRight()");
 				current = current.getRight();
 			}
 			else
 			{
+				System.out.println("current.getLeft()");
 				current = current.getLeft();
 			}
 		}
