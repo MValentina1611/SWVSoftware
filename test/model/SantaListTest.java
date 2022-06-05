@@ -83,7 +83,7 @@ public class SantaListTest {
 		setUpScenary3();
 		ArrayList<Node<Child>> filtered = santaListForTest.countryFilter("Argentina");
 		
-		ArrayList<Node<Child>> expected = null;
+		ArrayList<Node<Child>> expected = new ArrayList<Node<Child>>();
 		
 		expected.add(new Node<Child>(new Child(9,"Caro","Torres","Argentina","Buenos Aires","Calle 30-50","Bici")) );
 		

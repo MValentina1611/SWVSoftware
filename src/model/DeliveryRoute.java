@@ -13,6 +13,7 @@ public class DeliveryRoute {
 	
 	public DeliveryRoute(String initial, ArrayList<Node<Child>> childrenByCountry)
 	{
+		route = new GraphLA<Child>();
 		ArrayList<Child> childrenPerInitial = new ArrayList<Child>();
 		
 		for(int i = 0; i < childrenByCountry.size(); i++)
@@ -56,6 +57,10 @@ public class DeliveryRoute {
 		else if(isConsonant(viInitial) == true &&  isConsonant(vfInitial) == false || isConsonant(vfInitial) == true &&  isConsonant(viInitial) == false)  
 		{
 			distance = distanceBetweenConsonantandVowels();
+		}
+		else if(isConsonant(viInitial) == true && isConsonant(vfInitial) == true)
+		{
+			distance = distanceSameCity();
 		}
 		else if(vi.getCity().equalsIgnoreCase(vf.getCity()))
 		{
