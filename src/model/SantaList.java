@@ -61,6 +61,7 @@ public class SantaList {
 			{
 				System.out.println("added");
 				filtered.add(current);
+				current = current.getRight();
 			}
 			else if( country.compareTo(current.getElement().getCountry()) > 0)
 			{
@@ -80,6 +81,7 @@ public class SantaList {
 
 	public void deleteChild(Child toDelete)
 	{
+		System.out.println("delete");
 		santaListByCountry.delete(toDelete);
 		santaListByNames.delete(toDelete);
 	}

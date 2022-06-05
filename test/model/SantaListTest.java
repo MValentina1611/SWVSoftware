@@ -58,6 +58,7 @@ public class SantaListTest {
 		assertEquals(childExpected.toString2(), santaListForTest.getToShow().get(1).toString2() );
 	}
 
+	
 	@Test
 	public void testDeleteChild()
 	{
@@ -65,17 +66,10 @@ public class SantaListTest {
 		Child toDelete = new Child(9,"Luis","Castro","Colombia","Cali","Calle 24-30","Robot");
 		santaListForTest.deleteChild(toDelete);
 		Child childExpected = new Child(9,"Caro","Torres","Argentina","Buenos Aires","Calle 30-50","Bici");
+		
 		assertEquals(childExpected.toString2(), santaListForTest.getSantaListByNames().getRoot().getElement().toString2());
 	}
 	
-	@Test
-	public void testDeleteChild2()
-	{
-		setUpScenary1();
-		Child toDelete = new Child(9,"Caro","Torres","Argentina","Buenos Aires","Calle 30-50","Bici");
-		santaListForTest.deleteChild(toDelete);
-		assertEquals(null, santaListForTest.getSantaListByNames().getRoot().getElement().toString2());
-	}
 	
 	@Test
 	public void testFilterByCountry()
@@ -87,7 +81,7 @@ public class SantaListTest {
 		
 		expected.add(new Node<Child>(new Child(9,"Caro","Torres","Argentina","Buenos Aires","Calle 30-50","Bici")) );
 		
-		assertEquals(expected, filtered);
+		assertEquals(expected.get(0).getElement().toString2(), filtered.get(0).getElement().toString2());
 	}
 	
 	@Test

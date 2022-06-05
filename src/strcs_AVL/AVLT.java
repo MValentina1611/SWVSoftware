@@ -2,6 +2,8 @@ package strcs_AVL;
 
 import java.util.Comparator;
 
+
+
 public class AVLT<E> implements BST_General<E> {
 
 	private Node<E> root;
@@ -56,7 +58,7 @@ public class AVLT<E> implements BST_General<E> {
 	@Override
 	public Node<E> search(Node<E> root, E toSearch) 
 	{
-		if(root.getElement() == null) {
+		if(root == null) {
 			return root;
 		}else if(comparator.compare(toSearch, root.getElement())==0) {
 			return root;
@@ -77,12 +79,13 @@ public class AVLT<E> implements BST_General<E> {
 		return remove;
 	}
 	
-	private void removeNode(Node<E> d) {
+	private void removeNode(Node<E> d) 
+	{
 		if(d!=null) {	
 			if(isleaf(d)) {
 				if(d==root) {
 					root=null;
-				}else if(d==d.getParent().getLeft()) {
+				}else if(d == d.getParent().getLeft()) {
 					d.getParent().setLeft(null);
 				}else {
 					d.getParent().setRight(null);
@@ -119,31 +122,30 @@ public class AVLT<E> implements BST_General<E> {
 	}
 
 	private void balance(Node<E> n) {
-		do {
-			if(n.fb()==-2) {
-				if(n.getLeft()!=null) {
-					if(n.getLeft().fb()==-1 || n.getLeft().fb()==0) {
-						rotateRight(n);
-					}else {
-						rotateLeft(n.getLeft());
-						rotateRight(n);
-					}
-
-				}
-			}else if(n.fb() == 2) {
-				if(n.getRight() != null) {
-					if(n.getRight().fb() == 1 || n.getRight().fb() == 0) {
-						rotateLeft(n);
-					}else {
-						rotateRight(n.getRight());
-						rotateLeft(n);
-					}
-				}
-			} else {
-				
-			}
-			n = n.getParent();
-		}while(n != null);
+		
+		n.height();
+		
+		int balance = fb(n);
+		
+		if(balance > 1 && fb(n.getLeft())>=0)
+		{
+			rotateRight(n);
+		}
+		if(balance > 1 && fb(n.getLeft()) < 0)
+		{
+			rotateLeft(n.getLeft());
+			rotateRight(n);
+		}
+		if(balance < -1 && fb(n.getRight())<=0)
+		{
+			rotateLeft(n);
+		}
+		if( balance < -1 && fb(n.getRight()) > 0)
+		{
+			rotateRight(n.getRight());
+			rotateLeft(n);
+		}
+		
 	}
 	
 	public int getheight(Node<E> n){
