@@ -73,9 +73,15 @@ public class AVLT<E> implements BST_General<E> {
 	public Node<E> delete(E toDelete) 
 	{
 		Node<E> remove = search(root, toDelete);
-		removeNode(remove);
 		
-		balance(remove.getParent());
+		if(remove != null && remove.getLeft() != null)
+		{	
+			removeNode(remove);
+			if (remove.getParent()!=null)
+			{
+				balance(remove.getParent());
+			}
+		}
 		return remove;
 	}
 	
